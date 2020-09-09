@@ -61,7 +61,7 @@
 
 |    Column        | Type      | Options                      |
 |------------------|-----------|------------------------------|
-| exchanges_id     | integer   | foreign_key:true             |
+| exchange_id     | integer   | foreign_key:true             |
 | post_code        | string    | null: false                  |
 | prefecture_code  | integer   | null: false                  |
 | city             | string    | null: false                  | 
