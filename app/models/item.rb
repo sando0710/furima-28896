@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
-  # validates :name, presence: true
-  # validates :introduction, presence: true
+
 
   belongs_to :user
 
@@ -16,6 +15,5 @@ class Item < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
 
   has_one :exchange
-  #  has_one_attached :item_image
-  #  <%= image_tag user.avatar.variant(resize_to_fill: [308, 308]) %>
+  
 end
