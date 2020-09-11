@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :password, presence: true,
-                       format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i, message: ' Include both letters and numbers' }
+                       format: { with: /\A[a-z\d]{6,100}+\z/i, message: ' Include both letters and numbers' }
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
@@ -16,6 +16,6 @@ class User < ApplicationRecord
                                                format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
   validates :birth_day, presence: true
 
-  has_many :item, dependent: :destroy
-  has_many :exchange, dependent: :destroy
+  # has_many :item, dependent: :destroy
+  # has_many :exchange, dependent: :destroy
 end
