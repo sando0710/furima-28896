@@ -26,11 +26,11 @@
 | user_id          | integer   | foreign_key:true             |
 | name             | string    | null: false                  |
 | introduction     | text      | null: false                  |
-| category         | integer   | null: false                  |
-| condition        | integer   | null: false                  |
-| delivery_burden  | integer   | null: false                  |
-| prefecture_code  | integer   | null: false                  |
-| prepare_day      | integer   | null: false                  |
+| category_id         | integer   | null: false                  |
+| condition_id        | integer   | null: false                  |
+| delivery_burden_id  | integer   | null: false                  |
+| prefecture_id  | integer   | null: false                  |
+| prepare_day_id      | integer   | null: false                  |
 | price            | integer   | null: false                  |
 
 ### Association
