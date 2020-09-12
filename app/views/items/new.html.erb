@@ -1,16 +1,11 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item do |f| %>
-    <%= f.hidden_field :user_id, :value => @user.id %>
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
+    <%= form_with model: @item,  local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# 出品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
@@ -21,12 +16,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        
-        <%#ここです！0907%>
-        <%#= form_with(model: image, local: true) do %>
-        <%#= f.file_field :item_image, id:"item-image" %>
-        <%# end %>
-
+        <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
     <%# /出品画像 %>
@@ -46,7 +36,6 @@
       </div>
     </div>
     <%# /商品名と商品説明 %>
-
     <%# 商品の詳細 %>
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
@@ -55,18 +44,15 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%#= f.collection_select(:category, {class:"select-box", id:"item-category"}) %>
-        <%= f.collection_select(:category_id, @categorys, :id, :category, {:prompt =>"---"}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%#= f.collection_select(:condition, {class:"select-box", id:"item-sales-status"}) %>
-        <%= f.collection_select(:condition_id, @conditions, :id, :condition, {:prompt =>"---"}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
-
     <%# 配送について %>
     <div class="items-detail">
       <div class="weight-bold-text question-text">
@@ -78,21 +64,20 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_burden_id, @delivery_burden, :id, :delivery_burden, {:prompt =>"---"}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:delivery_burden_id, DeliveryBurden.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, @prefectures, :id, :prefecture, {:prompt =>"都道府県を選択してください。"}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prepare_day_id, @prepare_days, :id, :prepare_day, {:prompt =>"---"}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:prepare_day_id, PrepareDay.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
-
     <%# 販売価格 %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
@@ -123,7 +108,6 @@
       </div>
     </div>
     <%# /販売価格 %>
-
     <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
@@ -151,7 +135,6 @@
     <%# /下部ボタン %>
   </div>
   <% end %>
-
   <footer class="items-sell-footer">
     <ul class="menu">
       <li><a href="#">プライバシーポリシー</a></li>
