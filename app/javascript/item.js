@@ -15,7 +15,6 @@ function price(){
           add_tax.textContent = fee;
           profit.textContent = gains;
       }
-      
     });
   }
   window.addEventListener('load', price);
