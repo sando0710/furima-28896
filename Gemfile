@@ -58,11 +58,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-
-gem 'devise'
-gem 'active_hash', '~> 2.3.0'
-gem 'pry-rails'
-
 group :production do
   gem 'rails_12factor'
 end
+  gem 'pry-rails'
+  gem 'payjp'
+  gem 'devise'
+  gem 'active_hash', '~> 2.3.0'
+  
