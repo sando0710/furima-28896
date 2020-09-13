@@ -16,6 +16,8 @@ class User < ApplicationRecord
                                                format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
   validates :birth_day, presence: true
 
+
   has_many :item
   has_many :exchange
+
 end

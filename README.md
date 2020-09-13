@@ -63,7 +63,7 @@
 |------------------|-----------|------------------------------|
 | exchange_id      | integer   | foreign_key:true             |
 | post_code        | string    | null: false                  |
-| prefecture  | integer   | null: false                  |
+| prefecture_code  | integer   | null: false                  |
 | city             | string    | null: false                  | 
 | address          | string    | null: false                  |
 | building         | string    |                              |
