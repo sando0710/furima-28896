@@ -12,15 +12,12 @@
       <%= image_tag @item.image ,class:"item-box-img" %>
 
 
-      <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
-      <%# if @exchange.exists?(item_id: @item.id)%>
-      <div class='sold-out'>
+      <% if @item.exchange.present? %>
+        <div class='sold-out'>
         <span>Sold Out!!</span>
-      </div>
-      <%# else %>
+        </div>
+      <% end %>
       
-      <%# end %>
-      <%# //商品が売れている場合は、sold outの表示をしましょう。 %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -37,8 +34,9 @@
       <p class='or-text'>or</p>
       <%= link_to '削除', item_path, method: :delete, class:'item-destroy' %>
     <% elsif user_signed_in?  %>
-    <%# if @exchange.exists?(item_id: @item.id)%>
-      <%= link_to '購入画面に進む', exchanges_index_path(@item.id) ,class:"item-red-btn"%>
+      <% unless @item.exchange.present? %>
+        <%= link_to '購入画面に進む', item_exchanges_path(@item.id) ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
     <div class="item-explain-box">
